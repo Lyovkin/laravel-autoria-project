@@ -10,13 +10,7 @@ class AutoRiaService {
 
     public function getTypeCar()
     {
-        try {
-            $jsonData = file_get_contents('http://api.auto.ria.com/categories');
-            $data = json_decode($jsonData, true);
-            return $data;
-        } catch (\Exception $e) {
-           if($e) die($e->getMessage());
-        }
+
     }
 
     public function getTypeBodyCar()
@@ -24,9 +18,20 @@ class AutoRiaService {
 
     }
 
+    /**
+     * Получаем бренды автомобилей
+     *
+     * @return mixed
+     */
     public function getCarBrand()
     {
-
+        try {
+            $jsonData = file_get_contents('http://api.auto.ria.com/categories/1/marks');
+            $data = json_decode($jsonData, true);
+            return $data;
+        } catch (\Exception $e) {
+            if($e) die($e->getMessage());
+        }
     }
 
     public function getModelCar()

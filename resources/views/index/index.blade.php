@@ -79,20 +79,41 @@
                     <h2 style="position: relative; top: -140px;">Course project "AutoRia service"</h2>
                     <span class="subheading" style="position: relative; top: -130px;">Получение моделей авто и статистики с помошью API AutoRia</span>
                 </div>
-                <form method="post" action="submit" role="form">
+                <form method="post" action="model" role="form">
                     <div class="form-group col-xs-4" style="position: relative; left: -265px;top: -238px;">
-                        <label for="type" style="color: #fff;">Тип транспорта:</label>
+                        <label for="type" style="color: #fff;">Марка автомобиля:</label>
                         <select id="type" name="transport" class="form-control">
-                            <option value="0">Любой</option>
-                            @foreach($typeTrans as $type)
-                                <option value="{{$type['value']}}">{{$type['name']}}</option>
-                            @endforeach
+                            @if(isset($name))
+                                <option>{{$name}}</option>
+                            @else
+                                @foreach($typeTrans as $type)
+                                    <option value="{{$type['value']}}">{{$type['name']}}</option>
+                                @endforeach
+                            @endif
                         </select>
-                        <button class="btn btn-default" type="submit" style="margin-top: 10px;">Сохранить выбор</button>
+                        <button class="btn btn-default" type="submit" style="margin-top: 10px;
+                        position: absolute;left: 245px;top: 24px; padding: 5px 5px; border-radius: 5px;">Выбрать</button>
 
                     </div>
                     <input type="hidden" name="_token" id="_token" value="{!! csrf_token() !!}" />
                 </form>
+
+                <form method="post" action="cars" role="form">
+                    <div class="form-group col-xs-4" style="position: relative; left: -265px;top: -238px;">
+                        <label for="type" style="color: #fff;position: relative; top: 75px; right: 250px;">Модель автомобиля:</label>
+                        <select id="type" name="model" class="form-control" style="position: absolute;top: 105px;right: 236px;">
+                            @if(isset($models))
+                            @foreach($models as $model)
+                                <option value="{{$model['value']}}">{{$model['name']}}</option>
+                            @endforeach
+                            @endif
+                        </select>
+                        <button class="btn btn-default" type="submit" style="margin-top: 10px;position: absolute;left: 23px;top: 96px;
+                        padding: 5px 5px; border-radius: 5px;">Выбрать</button>
+                    </div>
+                    <input type="hidden" name="_token" id="_token" value="{!! csrf_token() !!}" />
+                </form>
+
             </div>
 
         </div>
@@ -104,9 +125,16 @@
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-preview">
-                Content
+                @if(isset($data))
+                  Найдено результатов: {{ $data->result_count }}
+                @endif
             </div>
             <hr>
+            @if(isset($imgArr))
+                @foreach($imgArr as $img)
+                        <img src="{{ $img }}" />
+                @endforeach
+            @endif
             <!-- Pager -->
 
         </div>

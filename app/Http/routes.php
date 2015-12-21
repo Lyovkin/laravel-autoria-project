@@ -12,4 +12,5 @@
 */
 
 Route::get('/', 'IndexController@index');
-Route::post('submit', 'IndexController@submit');
+Route::post('model', 'IndexController@getModel');
+Route::post('cars', 'IndexController@getAuto');

@@ -6,7 +6,11 @@
     "type": "project",
     "require": {
         "php": ">=5.5.9",
-        "laravel/framework": "5.1.*"
+        "laravel/framework": "5.1.*",
+        "barryvdh/laravel-debugbar": "^2.0",
+        "yangqi/htmldom": "dev-master",
+        "sunra/php-simple-html-dom-parser": "v1.5.0",
+        "gettyimages/gettyimages-api": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
